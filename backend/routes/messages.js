@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const Message = require("../models/Message");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const { uploadImage, getChatHistory } = require("../controllers/messageController");
+const authMiddleware = require("../middleware/authMiddleware");
 
-// ✅ Upload folder setup
+// Upload folder setup
 const uploadDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
@@ -27,29 +28,8 @@ const upload = multer({
   },
 });
 
-// ✅ Image upload endpoint
-router.post("/upload", upload.single("image"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-  const imageUrl = `/uploads/${req.file.filename}`;
-  res.json({ imageUrl });
-});
-
-// ✅ GET chat history (deleted messages exclude)
-router.get("/:user1/:user2", async (req, res) => {
-  const { user1, user2 } = req.params;
-  try {
-    const messages = await Message.find({
-      $or: [
-        { sender: user1, receiver: user2 },
-        { sender: user2, receiver: user1 },
-      ],
-      deleted: { $ne: true },
-    }).sort({ createdAt: 1 });
-
-    res.json(messages);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// Protected routes using authMiddleware
+router.post("/upload", authMiddleware, upload.single("image"), uploadImage);
+router.get("/:user1/:user2", authMiddleware, getChatHistory);
 
 module.exports = router;

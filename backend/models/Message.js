@@ -14,7 +14,7 @@ const messageSchema = new mongoose.Schema(
     imageUrl: { type: String, default: "" },
     deleted: { type: Boolean, default: false },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("Message", messageSchema);
