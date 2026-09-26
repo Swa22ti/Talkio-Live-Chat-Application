@@ -1,50 +1,39 @@
 .authBg {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+  @apply min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden;
+}
+
+.authBg::before {
+  content: "";
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/30 rounded-full blur-[100px] pointer-events-none;
+}
+
+.authBg::after {
+  content: "";
+  @apply absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/20 rounded-full blur-[80px] pointer-events-none;
 }
 
 .authCard {
-  background: white;
-  border-radius: 20px;
-  padding: 40px 36px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  @apply bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-10 w-full max-w-md shadow-2xl relative z-10;
 }
 
 .authLogo {
-  text-align: center;
-  margin-bottom: 28px;
+  @apply text-center mb-8;
 }
 
 .authTitle {
-  margin: 4px 0 4px;
-  font-size: 28px;
-  font-weight: 800;
-  color: #1e293b;
+  @apply mt-2 mb-1 text-3xl font-black text-white tracking-tight;
 }
 
 .authSubtitle {
-  margin: 0;
-  color: #94a3b8;
-  font-size: 14px;
+  @apply m-0 text-slate-400 text-sm font-medium;
 }
 
 .switchText {
-  text-align: center;
-  color: #64748b;
-  font-size: 13px;
-  margin-top: 16px;
+  @apply text-center text-slate-400 text-sm mt-6;
 }
 
 .switchLink {
-  color: #6366f1;
-  cursor: pointer;
-  font-weight: 600;
+  @apply text-indigo-400 cursor-pointer font-bold hover:text-indigo-300 transition-colors ml-1;
 }
 
 .appLayout {

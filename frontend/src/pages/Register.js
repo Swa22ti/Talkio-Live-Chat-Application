@@ -25,9 +25,9 @@ export default function Register() {
   if (success) {
     return (
       <div style={{ textAlign: "center", padding: "20px 0" }}>
-        <div style={{ fontSize: 40, marginBottom: 8 }}>✅</div>
-        <h3 style={{ color: "#1e293b" }}>Account created!</h3>
-        <p style={{ color: "#64748b", fontSize: 14 }}>
+        <div style={{ fontSize: 48, marginBottom: 12 }}>✅</div>
+        <h3 style={{ color: "#f8fafc", fontSize: 24, fontWeight: "bold", marginBottom: 8 }}>Account created!</h3>
+        <p style={{ color: "#94a3b8", fontSize: 14 }}>
           You can now login with your credentials.
         </p>
       </div>
