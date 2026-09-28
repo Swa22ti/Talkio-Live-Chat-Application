@@ -1,3 +1,5 @@
+@reference "../index.css";
+
 .formTitle {
   @apply text-3xl font-extrabold text-white mb-6 text-center tracking-tight;
 }
